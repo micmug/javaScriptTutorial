@@ -1,0 +1,19 @@
+/* chatty */
+body {
+  font-family: Arial, sans-serif;
+  margin: 20px;
+  padding: 0;
+  background-color: #f4f4f9;
+}
+
+/* console chatty */
+.console {
+  margin-top: 20px;
+  padding: 20px;
+  background-color: #333;
+  color: #fff;
+  font-family: monospace;
+  border-radius: 4px;
+  overflow-y: auto;
+  height: 500px;
+}

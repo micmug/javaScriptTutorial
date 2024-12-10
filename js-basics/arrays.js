@@ -19,7 +19,7 @@ numbers1.unshift(1, 2);
 console.log(numbers1);
 console.log("... to the Middle --> .splice ");
 console.log(
-  "... numbers1.splice( 2 (add after {index]), 0 (elements to delete), 'a', 'b' (elements to add"
+  "... numbers1.splice( 2 (add after {index]), 0 (elements to delete), 'a', 'b' (elements to add)"
 );
 numbers1.splice(2, 0, "a", "b");
 console.log(numbers1);
@@ -452,6 +452,66 @@ console.log(chainedFilterMapFilterMap);
 // 15 Reducing an Array
 console.log();
 console.log(t(4) + "15 Reducing an Array\n");
+
+const num15 = [1, -1, 2, 3];
+console.log(num15);
+
+let sum1 = 0;
+for (let n of num15) sum1 += n;
+
+console.log("sum1");
+console.log(sum1);
+console.log();
+
+console.log("accumulator");
+const sum2 = num15.reduce((accumulator, currentValue) => {
+  console.log(accumulator);
+  console.log(
+    currentValue + " < currentValue + " + accumulator + " < accumulator"
+  );
+  return accumulator + currentValue;
+}, 0); // initializing accumulator
+
+console.log(sum2);
+
+console.log();
+console.log("accumulator without ini");
+const sum3 = num15.reduce((accumulator, currentValue) => {
+  console.log(accumulator);
+  console.log(
+    currentValue + " < currentValue + " + accumulator + " < accumulator"
+  );
+  accumulator + currentValue;
+}); // initializing accumulator
+console.log();
+console.log("accumulator code reduced");
+const sum4 = num15.reduce(
+  (accumulator, currentValue) => accumulator + currentValue
+);
+
+console.log(sum4);
+
+// 16 E1 Array from Range
+console.log();
+console.log(t(4) + "16 E1 Array from Range\n");
+
+function arrayOfTheRange(min, max) {
+  let result = [];
+  for (let i = min; i <= max; i++) {
+    result.push(i);
+    console.log(result);
+  }
+  return result;
+}
+
+const digits = arrayOfTheRange(-3, 3);
+
+console.log("result in digits:");
+console.log(digits);
+
+//
+console.log();
+console.log(t(4) + "17 E2 Includes\n");
 
 console.log(t(4) + " ");
 console.log();

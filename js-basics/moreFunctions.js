@@ -322,6 +322,149 @@ const video10 = {
 
 video10.showTags();
 
+// 11 Changing this
+console.log(t(4) + " 11 Changing this");
+//---------------------------------------------------------------
+console.log(`Workaround for THIS: 
+  > Arrow Functions >> this points to the parent object
+  > const self = this >> this points to the parent object
+  > .bind(this) >> this points to the parent object`);
+
+const video11 = {
+  title: "a",
+  tags: ["a", "b", "c"],
+  showTags() {
+    const self = this;
+    this.tags.forEach(function (tag) {
+      console.log(self.title, tag);
+    });
+  },
+};
+
+video11.showTags();
+//---------------------------------------------------------------
+function playVideo(a, b) {
+  console.log(this);
+}
+console.log();
+
+playVideo.call({ named: "Bird" }, 1, 2);
+playVideo.apply({ named: "Bird" }, [1, 2]); // properties must be passed as an array [1, 2]
+playVideo.bind({ named: "Bird" }, 1, 2); // returns a new function
+const fn1 = playVideo.bind({ named: "Bird" }, 1, 2);
+fn1();
+const fn2 = playVideo.bind({ named: "Bird" }, 1, 2)();
+console.log();
+//---------------------------------------------------------------
+
+const video11c = {
+  title: "a",
+  tags: ["a", "b", "c"],
+  showTags() {
+    this.tags.forEach(
+      function (tag) {
+        console.log(this.title, tag);
+      }.bind(this)
+    );
+  },
+};
+
+video11c.showTags();
+
+//---------------------------------------------------------------
+console.log();
+
+const video11d = {
+  title: "a",
+  tags: ["a", "b", "c"],
+  showTags() {
+    this.tags.forEach((tag) => {
+      // arrow function inherits this
+      console.log(this.title, tag);
+    });
+  },
+};
+
+video11d.showTags();
+
+// 12 E1 Sum of Arguments
+console.log(t(4) + " 12 E1 Sum of Arguments");
+
+function sum1e(...items) {
+  console.log("Items:", items); // Überprüfen Sie die Argumente
+  return items.reduce((a, b) => {
+    console.log(`Adding ${a} and ${b}`); // Überprüfen Sie jeden Schritt
+    return a + b;
+  });
+}
+console.log();
+
+console.log(sum1e(1, 2, 3, 4));
+console.log(sum1e([1, 2, 3, 4]));
+console.log();
+
+function sum2e(...items) {
+  if (items.length === 1 && Array.isArray(items[0])) {
+    items = [...items[0]];
+  }
+  console.log("Items:", items); // Überprüfen Sie die Argumente
+  return items.reduce((a, b) => {
+    console.log(`Adding ${a} and ${b}`); // Überprüfen Sie jeden Schritt
+    return a + b;
+  });
+}
+console.log();
+
+console.log(sum2e(1, 2, 3, 4));
+console.log(sum2e([1, 2, 3, 4]));
+
+console.log();
+// 12 E1 Sum of Arguments
+console.log(t(4) + " 12 E1 Sum of Arguments");
+console.log();
+
+//circle.radius =2;
+// console.log(circle.area);
+
+const circle = {
+  radius: 1,
+  get area() {
+    return Math.PI * this.radius * this.radius;
+  },
+};
+console.log(circle.area);
+
+// 13 E3 Error Handling
+console.log(t(4) + " 13 E3 Error Handling");
+console.log();
+
+const numE3 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+
+function countOccurrencesReduce(array, searchElement) {
+  if (!Array.isArray(array)) {
+    throw new Error("First argument must be an array");
+  }
+
+  return array.reduce((accumulator, current) => {
+    const occurrence = current === searchElement ? 1 : 0;
+    console.log(t(1), accumulator, t(1), current, t(1), searchElement);
+    return accumulator + occurrence;
+  }, 0);
+}
+
+try {
+  countOccurrencesReduce(numE3, 1);
+} catch (e) {
+  console.log(e);
+}
+console.log();
+
+try {
+  countOccurrencesReduce(null, 1);
+} catch (e) {
+  console.log(e);
+}
+
 console.log();
 console.log(``);
 console.log("");
